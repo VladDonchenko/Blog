@@ -4,11 +4,11 @@
     <div class="field">
       <%= form.text_area :body, class: 'form-control', rows: "3"%>
     </div>
-    <div class='field'> 
+    <div > 
         <%= form.select(:autor_id, Autor.all.collect {|a| [ a.full_name, a.id ] }, {}, {:class => "select_autor"}) %>
     </div>
     <div class="actions " >
-      <%= form.submit nil, class: "btn btn-success"%>
+      <%= form.submit nil, class: "pressed-button"%>
     </div>
   <% end %>
 </div>

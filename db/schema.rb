@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_151646) do
+ActiveRecord::Schema.define(version: 2020_12_22_183022) do
 
   create_table "autors", force: :cascade do |t|
     t.string "first_name"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_151646) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "visitors_count"
+    t.integer "views", default: 0
   end
 
 end
