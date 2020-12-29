@@ -30,22 +30,33 @@
     <div>
      <i>  updated <%= distance_of_time_in_words(comment.updated_at, Time.now) %> ago</i>
     </div>
-  <button class='pressed-button edit_comment'>Edit Comment</button>
-      <% if comment.status == 'unpublished' %>
-      <div class='pressed-button'>
-        <%= link_to 'Publish Comment', publish_post_comment_path(@post.id, comment.id), method: :post %>
+          <div>
+          <%if comment.created_at < comment.updated_at%><b>edited</b> |<%end%>
+          <% less_than_hour = comment.created_at >= 1.hour.ago %>
+          <% time = distance_of_time_in_words(comment.created_at, Time.now)%>
+        <i> created  <%= time  %> ago</i>
+        </div>
+
+        <% if !current_autor.nil? && current_autor.id == comment.autor.id && less_than_hour %>
+
+          <button class='pressed-button edit_comment'>Edit Comment</button>
+                 <div class='pressed-button'>
+            <%= link_to 'Destroy Comment', [comment.post, comment],
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %>
+          </div>  
+          <% if comment.status == 'unpublished' %>
+            <div class='pressed-button'>
+              <%= link_to 'Publish Comment', publish_post_comment_path(@post.id, comment.id), method: :post %>
+            </div>
+          <% end %> 
+          <div class='cont add_comment update_comment invisible'>
+            <h4>Edit Comment</h4>
+            <%= render 'comment_form', comment: comment%>
+          </div>
+          
+
+        <% end %>
       </div>
-    <% end %>
-      <div class='pressed-button'>
-      <%= link_to "Destroy Comment", [comment.post, comment],
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-    </div>
-    <div class='cont add_comment update_comment invisible'>
-      <h4>Edit Comment</h4>
-      <%= render 'comment_form', comment: comment%>
-    </div>
-
-
  </div>
 <% end %>

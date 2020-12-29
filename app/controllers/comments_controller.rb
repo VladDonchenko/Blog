@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :authorize, only: [:edit, :create, :publish, :destroy, :update]
+
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.create(comment_params.merge(autor_id: current_autor.id))
     message = if @comment.persisted?
                 { notice: 'Commented created successfully' }
               else
