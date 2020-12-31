@@ -1,4 +1,17 @@
+<% if @show_register %>
+  <script>
+    $(function(){   
+      $(".modal_login").show()           
+      $('.close').click(function(){
+        $(".modal_login").css("display", "none")
+      }); 
+    })
+  </script>
+<%end%>
+
 <p id="notice"><%= notice %></p>
+<%= render 'posts/modal'%>
+
 <div>
 <%= form_tag posts_path, :method => 'get' do %>
 <%= text_field_tag :search, params[:search], placeholder: 'Search' %>
@@ -7,6 +20,8 @@
 <% end %>
 <%= link_to 'Home', posts_path %>
 </div>
+
+
 
 <table border="1">
   <thead>

@@ -14,8 +14,18 @@ def create
   end
 end
 
+  def profile
+    @autor = current_autor
+  end
+
+  def save_profile
+    @autor = current_autor
+    @autor.update(autor_params)
+    redirect_to profile_autors_path
+  end
+
   def autor_params
-    params.require(:autor).permit(:autorname, :email, :password, :salt, :encrypted_password)
+    params.require(:autor).permit(:avatar, :first_name, :last_name, :autorname, :email, :password, :salt, :encrypted_password)
   end
 
 end

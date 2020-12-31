@@ -20,10 +20,14 @@
 </form>
 
 <% @comments.each do |comment| %>
-  <div class='comment'>
-    <div>
+  <div class='comment' style="border: 1px #000000 solid;">
+        <div class='round'>
+      <%= render "autors/avatar", autor: comment.autor, class: 'round' %>
+    </div>
+    <div style="font-size: 20px; bottom: 100px">
       <%= comment.body %>
     </div>
+
     <p>
       <b><%= comment.autor.full_name %></b>
     </p>
@@ -57,6 +61,6 @@
           
 
         <% end %>
-      </div>
+
  </div>
 <% end %>

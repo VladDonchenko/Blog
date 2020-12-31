@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize, only: [:edit, :create, :destroy, :update]
+  before_action :authorize, only: [:new, :edit, :destroy, :update]
+   before_action :add_view, only: %i[index show]
+
+
+  def add_view
+    unless current_autor
+      cookies[:views] = cookies[:views].present? ? cookies[:views].to_i + 1 : 1 
+      @show_register = cookies[:views].to_i % 5 == 0
+    end
+  end
 
   def index
     @posts = Post.search(params[:search])
@@ -53,6 +62,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:name, :title, :content, :image, :autor_id)
+    params.require(:post).permit(:name, :title, :content, :image, :main_image, :second_image, :img, :autor_id)
   end
 end

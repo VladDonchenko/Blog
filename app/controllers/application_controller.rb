@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	helper_method :current_autor
+	  helper_method :current_post
   helper_method :authorize
 
 

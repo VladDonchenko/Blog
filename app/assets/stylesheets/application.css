@@ -229,3 +229,27 @@ a:hover{
 a:active{
   color: black;
 }
+
+.img-loc{
+  text-align: center;
+}
+
+.user-avatar{
+  font-size: 1px;
+  width: 1px;
+}
+
+.img-hed{
+  text-align: left;
+}
+
+.round {
+    border-radius: 50%;
+  }
+
+#crop{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+

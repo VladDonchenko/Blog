@@ -1,11 +1,8 @@
 <% comment ||= @post.comments.build%>
 <div class='comment_form'>
   <%= form_with model: [ @post, comment ] do |form| %>
-    <div class="field">
+    <div class="pressed-comment">
       <%= form.text_area :body, class: 'form-control', rows: "3"%>
-    </div>
-    <div > 
-        <%= form.select(:autor_id, Autor.all.collect {|a| [ a.full_name, a.id ] }, {}, {:class => "select_autor"}) %>
     </div>
     <div class="actions " >
       <%= form.submit nil, class: "pressed-button"%>
