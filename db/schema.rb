@@ -10,45 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_115317) do
-
-  create_table "autors", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "gender"
-    t.datetime "birthday"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "email"
-    t.string "password"
-    t.string "password_digest"
-    t.string "avatar"
+ActiveRecord::Schema.define(version: 20_201_231_115_317) do
+  create_table 'autors', force: :cascade do |t|
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'gender'
+    t.datetime 'birthday'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'email'
+    t.string 'password'
+    t.string 'password_digest'
+    t.string 'avatar'
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "body"
-    t.integer "status", default: 0
-    t.integer "autor_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'comments', force: :cascade do |t|
+    t.text 'body'
+    t.integer 'status', default: 0
+    t.integer 'autor_id'
+    t.integer 'post_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.string "title"
-    t.text "content"
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "visitors_count"
-    t.integer "views", default: 0
-    t.string "avatar"
-    t.integer "post_id"
-    t.string "img"
-    t.string "main_image"
-    t.string "second_image"
-    t.integer "autor_id"
+  create_table 'posts', force: :cascade do |t|
+    t.string 'name'
+    t.string 'title'
+    t.text 'content'
+    t.string 'image'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'visitors_count'
+    t.integer 'views', default: 0
+    t.string 'avatar'
+    t.integer 'post_id'
+    t.string 'img'
+    t.string 'main_image'
+    t.string 'second_image'
+    t.integer 'autor_id'
   end
-
 end

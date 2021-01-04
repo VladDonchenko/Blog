@@ -1,8 +1,7 @@
-#app/uploaders/image_uploader.rb
+# app/uploaders/image_uploader.rb
 
 class ImageUploader < CarrierWave::Uploader::Base
-
-include Cloudinary::CarrierWave
+  include Cloudinary::CarrierWave
 
   process convert: 'png'
   process tags: ['post_picture']
@@ -17,6 +16,5 @@ include Cloudinary::CarrierWave
 
   CarrierWave.configure do |config|
     config.cache_storage = :file
-   end
-
+  end
 end

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authorize, only: [:edit, :create, :publish, :destroy, :update]
+  before_action :authorize, only: %i[edit create publish destroy update]
 
   def create
     @post = Post.find(params[:post_id])

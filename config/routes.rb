@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-      resources :autors, only: %i[new create] do
+  resources :autors, only: %i[new create] do
     get :profile, on: :collection
     patch :save_profile, on: :collection
   end
@@ -20,7 +20,4 @@ Rails.application.routes.draw do
   end
 
   root 'posts#index'
-
-
-
 end

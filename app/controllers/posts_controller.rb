@@ -1,18 +1,18 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize, only: [:new, :edit, :destroy, :update]
-   before_action :add_view, only: %i[index show]
-
+  before_action :authorize, only: %i[new edit destroy update]
+  before_action :add_view, only: %i[index show]
 
   def add_view
     unless current_autor
-      cookies[:views] = cookies[:views].present? ? cookies[:views].to_i + 1 : 1 
+      cookies[:views] = cookies[:views].present? ? cookies[:views].to_i + 1 : 1
       @show_register = cookies[:views].to_i % 5 == 0
     end
   end
 
   def index
     @posts = Post.search(params[:search])
+    @posts = Post.search(params[:search]).paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -35,11 +35,16 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post = Post.new(post_params.merge(autor_id: current_autor.id))
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
       render :new
     end
+  end
+
+  def set_autor_post
+    @post = Post.where(autor_id: current_autor.id).find(params[:id])
   end
 
   def update
