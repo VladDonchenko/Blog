@@ -18,13 +18,14 @@ class PostsController < ApplicationController
   def show
     @post.increment(:views)
     @post.save
-    @comment_status = params[:comments_status].to_s.downcase
+    #@comment_status = params[:comments_status].to_s.downcase
 
-    @comments = if @comment_status == 'unpublished'
-                  @post.comments.unpublished
-                else
-                  @post.comments.published
-                end
+  #  @comments = if @comment_status == 'unpublished'
+   #               @post.comments.unpublished
+   #             else
+   #               @post.comments.published
+    #            end
+    @comments = @post.comments.all
   end
 
   def new
