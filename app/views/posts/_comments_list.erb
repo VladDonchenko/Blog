@@ -4,8 +4,12 @@
       $('#comments_show').submit()
     })*/
      $(".edit_comment").click(function(){
-      $(this).parent().find('.update_comment').removeClass("invisible")
-      $(this).addClass('invisible')
+      var $parent = $(this).parent('.comment_form_parent');
+      var $comment = $parent.find('.update_comment');
+      var $button = $(this);
+      console.log($parent, $comment, $button)
+      $comment.removeClass("invisible")
+      $button.addClass('invisible')
     })
   })
 </script>
@@ -19,48 +23,7 @@
   </div>
 </form>-->
 
-<% @comments.each do |comment| %>
-  <div class='comment' style="border: 1px #000000 solid;">
-        <div class='round'>
-      <%= render "autors/avatar", autor: comment.autor, class: 'round' %>
-    </div>
-    <div style="font-size: 20px; bottom: 100px">
-      <%= comment.body %>
-    </div>
-
-    <p>
-      <b><%= comment.autor.full_name %></b>
-    </p>
-    <div>
-     <i>  updated <%= distance_of_time_in_words(comment.updated_at, Time.now) %> ago</i>
-    </div>
-          <div>
-          <%if comment.created_at < comment.updated_at%><b>edited</b> |<%end%>
-          <% less_than_hour = comment.created_at >= 1.hour.ago %>
-          <% time = distance_of_time_in_words(comment.created_at, Time.now)%>
-        <i> created  <%= time  %> ago</i>
-        </div>
-
-        <% if !current_autor.nil? && current_autor.id == comment.autor.id && less_than_hour %>
-
-          <button class='pressed-button edit_comment'>Edit Comment</button>
-                 <div class='pressed-button'>
-            <%= link_to 'Destroy Comment', [comment.post, comment],
-                      method: :delete,
-                      data: { confirm: "Are you sure?" } %>
-          </div>  
-           <!--<% if comment.status == 'unpublished' %>
-            <div class='pressed-button'>
-              <%= link_to 'Publish Comment', publish_post_comment_path(@post.id, comment.id), method: :post %>
-            </div>
-          <% end %> -->
-          <div class='cont add_comment update_comment invisible'>
-            <h4>Edit Comment</h4>
-            <%= render 'comment_form', comment: comment%>
-          </div>
-          
-
-        <% end %>
-
- </div>
+<% @comments.select(&:root?).each do |comment| %>
+  <br/>
+<%= render 'posts/comment_one', comment: comment%>
 <% end %>

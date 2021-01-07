@@ -46,10 +46,13 @@
         <td><%= post.views%></td>
       </tr>
     <% end %>
-    <%= will_paginate @posts %>
+    <% if !current_autor.nil? %>
+<%= link_to 'New Post', new_post_path %>
+<% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+
+<%= will_paginate @posts %>

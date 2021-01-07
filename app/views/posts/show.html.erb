@@ -47,13 +47,17 @@
 <%= render 'posts/modal'%>
 
 <div class='cont add_comment'>
-  <h4>New Comment</h4>
-  <%= render 'comment_form' %>
+ <% if !current_autor.nil? %>   
+    <h4>New Comment</h4>
+              <%= render 'posts/comment_form', parent_comment: nil %>
+  <% else %>
+    <h6>Please, <%= link_to "Log in", '/login', method: :get%> or <%= link_to "Sign Up", '/autors/new'%> to leave a comment</h6>
+  <% end %>
 </div>
 
 <div class='cont comment_list'>
   <h4>Comments: <%= @post.comments.count%></h4>
   
-  <%= render 'comments_list' %>
+  <%= render 'posts/comments_list' %>
 </div>
 

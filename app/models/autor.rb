@@ -3,6 +3,8 @@ class Autor < ApplicationRecord
   validates_uniqueness_of :email
   has_many :posts
   has_many :comments
+  has_many :autor_comment_votes
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
   # Немогу понять в чём проблема, если подключить валидацию не сохраняется страничка пользователя.

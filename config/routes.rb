@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+
+
   resources :autors, only: %i[new create] do
     get :profile, on: :collection
     patch :save_profile, on: :collection
   end
-
+    post 'vote', to: 'votes#vote'
+    
   resources :autors
   resources :sessions
   get 'sessions/new'
