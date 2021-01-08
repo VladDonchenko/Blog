@@ -50,7 +50,7 @@
     <%end%>
 
     <% if comment.children.present? %>
-      <i class='right_child'></i>
+      <i class='comment'></i>
       <% comment.children.each do |child| %>   
           <%= render 'posts/comment_one', comment: child%>
       <% end %>  
