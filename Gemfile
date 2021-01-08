@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
-gem 'faker'
 gem 'ancestry'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'faker'
 
 gem 'carrierwave'
 gem 'cloudinary'
